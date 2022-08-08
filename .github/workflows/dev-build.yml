@@ -5,9 +5,11 @@ name: Build Development
 
 on:
   push:
-    branches: [ Development ]
+    branches:
+    - Development
   pull_request:
-    branches: [ Development ]
+    branches:
+    - Development
 
 jobs:
   build:
@@ -16,32 +18,32 @@ jobs:
 
     strategy:
       matrix:
-        browser: [chromium, chrome, firefox]
+        browser: [chromium, chrome]
 
     steps:
       - uses: actions/checkout@v2
         with:
           ref: Development
-      - name: Use Node.js 16
+      - name: Use Node.js version 16
         uses: actions/setup-node@v2
         with:
           node-version: '16'
           cache: 'npm'
       - name: Install
         run: |
-          npm --version
+          npm install -g nx
           npm install @dontcode/core@latest @dontcode/plugin-common@latest @dontcode/sandbox@latest --no-optional
           npm ci
       - name: Build
         run: |
-          npm run nx run seed:build -- --prod
+          nx run rest:build:production
       - name: Unit tests
         run: |
-          npm run nx run seed:test
-          npm run nx run plugin-tester:test
+          nx run seed:test
+          nx run plugin-tester:test
       - name: E2E Tests on ${{matrix.browser}}
         run: |
-          npm run ng e2e -- --project=plugin-tester-e2e --browser ${{matrix.browser}}
+          nx run plugin-tester-e2e:e2e --browser ${{matrix.browser}}
       - uses: actions/upload-artifact@v2
         # Test run screenshots only on failure
         if: failure()
