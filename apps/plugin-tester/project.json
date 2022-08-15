@@ -79,12 +79,6 @@
           }
         },
         "development": {
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
         }
       },
       "defaultConfiguration": "production"
@@ -101,6 +95,7 @@
       },
       "defaultConfiguration": "development",
       "options": {
+        "port": 4200,
         "publicHost": "http://localhost:4200"
       }
     },
