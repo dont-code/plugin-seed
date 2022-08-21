@@ -67,7 +67,7 @@ jobs:
         if: ${{ success() && matrix.browser == 'chromium'}}
         run: |
           nx run seed-tester:build:production --base-href "https://dont-code.net/plugin-seed/"
-      - if: ${{ success() && inputs.branch == 'main'}}
+      - if: ${{ success() && matrix.browser == 'chromium'}}
         uses: crazy-max/ghaction-github-pages@v3.0.0
         with:
           repo: dont-code/preview-ui
