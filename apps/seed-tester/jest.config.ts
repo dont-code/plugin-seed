@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'plugin-tester',
+  displayName: 'seed-tester',
   preset: '../../jest.preset.ts',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../coverage/apps/plugin-tester',
+  coverageDirectory: '../../coverage/apps/seed-tester',
   transform: {
     '^.+.(ts|mjs|js|html)$': 'jest-preset-angular',
   },
