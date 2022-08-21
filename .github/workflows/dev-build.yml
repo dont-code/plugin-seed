@@ -33,26 +33,26 @@ jobs:
         run: |
           npm install -g nx
           npm install @dontcode/core@latest @dontcode/plugin-common@latest @dontcode/sandbox@latest --no-optional
-          npm ci
+          npm install
       - name: Build
         run: |
           nx run seed:build:production
       - name: Unit tests
         run: |
           nx run seed:test
-          nx run plugin-tester:test
+          nx run seed-tester:test
       - name: E2E Tests on ${{matrix.browser}}
         run: |
-          nx run plugin-tester-e2e:e2e --browser ${{matrix.browser}}
+          nx run seed-tester-e2e:e2e --browser ${{matrix.browser}}
       - uses: actions/upload-artifact@v2
         # Test run screenshots only on failure
         if: failure()
         with:
           name: cypress-screenshots
-          path: dist/cypress/apps/plugin-tester-e2e/screenshots
+          path: dist/cypress/apps/seed-tester-e2e/screenshots
         # Test run video was always captured, so this action uses "always()" condition
       - uses: actions/upload-artifact@v2
         if: always()
         with:
           name: cypress-videos
-          path: dist/cypress/apps/plugin-tester-e2e/videos
+          path: dist/cypress/apps/seed-tester-e2e/videos
