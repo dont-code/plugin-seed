@@ -1,5 +1,6 @@
 import {Component, Injector, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import { AbstractDynamicComponent, ComponentLoaderService, PossibleTemplateList, TemplateList} from '@dontcode/plugin-common';
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'dontcode-seed-field',

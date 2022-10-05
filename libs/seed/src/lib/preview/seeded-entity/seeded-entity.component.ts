@@ -22,6 +22,7 @@ export class SeededEntityComponent extends PluginBaseComponent {
   }
 
   handleChange(change: Change): void {
+    // Nothing here
   }
 
 }
