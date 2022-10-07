@@ -1,4 +1,4 @@
-import {Component, Injector} from '@angular/core';
+import {ChangeDetectorRef, Component, Injector} from '@angular/core';
 import {ComponentLoaderService, PluginBaseComponent, PossibleTemplateList, TemplateList} from '@dontcode/plugin-common';
 import {Change} from "@dontcode/core";
 
@@ -10,8 +10,9 @@ import {Change} from "@dontcode/core";
 export class SeededEntityComponent extends PluginBaseComponent {
 
   constructor(loader: ComponentLoaderService,
-              injector: Injector) {
-    super (loader, injector);
+              injector: Injector,
+              ref: ChangeDetectorRef) {
+    super (loader, injector, ref);
   }
 
   providesTemplates(key?: string): TemplateList {
