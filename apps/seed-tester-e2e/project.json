@@ -7,7 +7,7 @@
     "e2e": {
       "executor": "@nrwl/cypress:cypress",
       "options": {
-        "cypressConfig": "apps/seed-tester-e2e/cypress.json",
+        "cypressConfig": "apps/seed-tester-e2e/cypress.config.js",
         "tsConfig": "apps/seed-tester-e2e/tsconfig.e2e.json",
         "devServerTarget": "seed-tester:serve:development"
       },
