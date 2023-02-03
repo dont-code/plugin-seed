@@ -5,16 +5,15 @@ name: Seed Plugin Release
 
 on:
   workflow_dispatch:
-
-  inputs:
-    version:
-      description: The version of the release, if needed (x.y.z-p)
-      required: false
-      type: string
-    next:
-      description: Is it a next release ?
-      required: true
-      type: boolean
+    inputs:
+      version:
+        description: The version of the release, if needed (x.y.z-p)
+        required: false
+        type: string
+      next:
+        description: Is it a next release ?
+        required: true
+        type: boolean
 
 jobs:
   build:
@@ -46,16 +45,16 @@ jobs:
           echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
           cd libs/seed
           npm version $PACKAGE_VERSION
-      - name: Version Next
+      - name: Version Patch
         if: ${{ success() && ( matrix.browser == 'chromium' ) && ( inputs.version == '') && ( inputs.next == true) }}
         run: |
           cd libs/seed
-          npm version prerelease
-      - name: Version Patch
+          npm version patch
+      - name: Version Minor
         if: ${{ success() && ( matrix.browser == 'chromium' ) && ( inputs.version == '') && ( inputs.next == false) }}
         run: |
           cd libs/seed
-          npm version patch
+          npm version minor
       - name: Version
         if: ${{ success() && ( matrix.browser == 'chromium' ) && ( inputs.version != '') }}
         run: |
@@ -103,13 +102,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.DONTCODE_ACTIONS_TOKEN }}
 
-      - name: Publish all libraries
+      - name: Publish library
         if: ${{ success() && ( matrix.browser == 'chromium' ) && ( inputs.next == true)}}
         run: |
           npm publish dist/libs/seed --access public --tag next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Publish all libraries
+      - name: Publish library
         if: ${{ success() && ( matrix.browser == 'chromium' ) && ( inputs.next == false) }}
         run: |
           npm publish dist/libs/seed --access public
