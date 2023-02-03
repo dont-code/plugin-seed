@@ -1,12 +1,13 @@
 {
+  "name": "seed",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/seed",
   "sourceRoot": "libs/seed/src",
   "prefix": "dontcode",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": ["dist/libs/seed"],
+      "outputs": ["{workspaceRoot}/dist/libs/seed"],
       "options": {
         "project": "libs/seed/ng-package.json"
       },
@@ -22,7 +23,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/seed"],
+      "outputs": ["{workspaceRoot}/coverage/libs/seed"],
       "options": {
         "jestConfig": "libs/seed/jest.config.ts",
         "passWithNoTests": true
