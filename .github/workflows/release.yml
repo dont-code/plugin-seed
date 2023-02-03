@@ -105,12 +105,14 @@ jobs:
       - name: Publish library
         if: ${{ success() && ( matrix.browser == 'chromium' ) && ( inputs.next == true)}}
         run: |
+          npm whoami
           npm publish dist/libs/seed --access public --tag next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish library
         if: ${{ success() && ( matrix.browser == 'chromium' ) && ( inputs.next == false) }}
         run: |
+          npm whoami
           npm publish dist/libs/seed --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
