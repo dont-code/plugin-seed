@@ -34,6 +34,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
+          registry-url: 'https://registry.npmjs.org'
           cache: 'npm'
       - name: Install Nx.dev
         run: |
@@ -105,14 +106,12 @@ jobs:
       - name: Publish library
         if: ${{ success() && ( matrix.browser == 'chromium' ) && ( inputs.next == true)}}
         run: |
-          npm whoami
           npm publish dist/libs/seed --access public --tag next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish library
         if: ${{ success() && ( matrix.browser == 'chromium' ) && ( inputs.next == false) }}
         run: |
-          npm whoami
           npm publish dist/libs/seed --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
