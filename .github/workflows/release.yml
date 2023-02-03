@@ -44,7 +44,7 @@ jobs:
           PACKAGE_VERSION=$(npm view @dontcode/plugin-seed versions --json | jq -r '.[-1]')
           echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
           cd libs/seed
-          npm version $PACKAGE_VERSION
+          npm version $PACKAGE_VERSION --allow-same-version
       - name: Version Patch
         if: ${{ success() && ( matrix.browser == 'chromium' ) && ( inputs.version == '') && ( inputs.next == true) }}
         run: |
