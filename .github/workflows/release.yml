@@ -100,13 +100,15 @@ jobs:
           mv dist/apps/seed-tester/* dist/apps/${{env.stage}}
           mv dist/apps/${{env.stage}} dist/apps/seed-tester
       - if: ${{ success() && matrix.browser == 'chromium' && ( inputs.deploy == true)}}
-        uses: crazy-max/ghaction-github-pages@v3.0.0
+        uses: gcollin/ghaction-github-pages@dev
         with:
           repo: dont-code/plugin-seed
           target_branch: gh-pages # The branch the action should deploy to.
           build_dir: dist/apps/seed-tester
-          keep_history: true
+          keep_history: false
+          multiple_sites: true
           jekyll: false
+          verbose: true
         env:
           GITHUB_TOKEN: ${{secrets.DONTCODE_ACTIONS_TOKEN }}
 
