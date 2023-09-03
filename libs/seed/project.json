@@ -9,7 +9,8 @@
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/libs/seed"],
       "options": {
-        "project": "libs/seed/ng-package.json"
+        "project": "libs/seed/ng-package.json",
+        "updateBuildableProjectDepsInPackageJson": false
       },
       "configurations": {
         "production": {
