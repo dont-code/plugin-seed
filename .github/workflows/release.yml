@@ -95,7 +95,8 @@ jobs:
       - name: Deploy the tester application in github pages
         if: ${{ success() && matrix.browser == 'chromium'}}
         run: |
-          nx run seed-tester:build:production --base-href "https://dont-code.net/plugin-seed/"
+          nx run seed-tester:build:production --base-href "https://dont-code.net/plugin-seed/${{env.stage}}"
+          mv -r dist/libs/seed/* dist/libs/seed/${{env.stage}}
       - if: ${{ success() && matrix.browser == 'chromium' && ( inputs.deploy == true)}}
         uses: crazy-max/ghaction-github-pages@v3.0.0
         with:
@@ -109,6 +110,6 @@ jobs:
       - name: Publish library ${{env.stage}}
         if: ${{ success() && ( matrix.browser == 'chromium' ) }}
         run: |
-          npm publish dist/libs/seed --access public --tag ${{env.stage}}
+          npm publish dist/libs/seed/${{env.stage}} --access public --tag ${{env.stage}}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
