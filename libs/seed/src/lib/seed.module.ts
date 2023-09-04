@@ -18,7 +18,7 @@ import {DropdownModule} from "primeng/dropdown";
 })
 export class SeedModule {
   constructor() {
-    console.log('Seed Plugin registering');   // Look for this log to make sure your plugin has been loaded
+    console.log('Seed Plugin Template registering');   // Look for this log to make sure your plugin has been loaded
     dtcde.registerPlugin(new SeedPlugin ());  // When created a module must register to the platform.
   }
 
