@@ -95,7 +95,7 @@ jobs:
       - name: Deploy the tester application in github pages
         if: ${{ success() && matrix.browser == 'chromium'}}
         run: |
-          nx run seed-tester:build:production --base-href "https://dont-code.net/plugin-seed/${{env.stage}}"
+          nx run seed-tester:build:production --base-href "https://dont-code.net/plugin-seed/${{env.stage}}/"
           mkdir dist/apps/${{env.stage}}
           mv dist/apps/seed-tester/* dist/apps/${{env.stage}}
           mv dist/apps/${{env.stage}} dist/apps/seed-tester
@@ -106,7 +106,7 @@ jobs:
           target_branch: gh-pages # The branch the action should deploy to.
           build_dir: dist/apps/seed-tester
           keep_history: false
-          multiple_sites: true
+          multiple_sites: false
           jekyll: false
           verbose: true
         env:
