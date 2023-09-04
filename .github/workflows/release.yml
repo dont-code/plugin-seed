@@ -95,13 +95,15 @@ jobs:
       - name: Deploy the tester application in github pages
         if: ${{ success() && matrix.browser == 'chromium'}}
         run: |
-          nx run seed-tester:build:production --base-href "https://dont-code.net/plugin-seed/"
+          nx run seed-tester:build:production --output-path="dist/apps/seed-tester/${{env.stage}}" --base-href "https://dont-code.net/plugin-seed/${{env.stage}}/"
       - if: ${{ success() && matrix.browser == 'chromium' && ( inputs.deploy == true)}}
-        uses: crazy-max/ghaction-github-pages@v3.0.0
+        uses: gcollin/ghaction-github-pages@dev
         with:
           repo: dont-code/plugin-seed
           target_branch: gh-pages # The branch the action should deploy to.
           build_dir: dist/apps/seed-tester
+          keep_history: false
+          multiple_sites: true
           jekyll: false
         env:
           GITHUB_TOKEN: ${{secrets.DONTCODE_ACTIONS_TOKEN }}
